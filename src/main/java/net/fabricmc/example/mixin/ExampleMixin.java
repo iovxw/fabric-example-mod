@@ -1,15 +1,15 @@
 package net.fabricmc.example.mixin;
 
-import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import net.minecraft.entity.ItemEntity;
 
-@Mixin(TitleScreen.class)
-public class ExampleMixin {
-	@Inject(at = @At("HEAD"), method = "init()V")
-	private void init(CallbackInfo info) {
-		System.out.println("This line is printed by an example mod mixin!");
-	}
+@Mixin({ ItemEntity.class })
+public abstract class ExampleMixin
+{
+    @ModifyConstant(method = { "tick" }, constant = { @Constant(intValue = 6000) })
+    public int modifyDespawnTime(final int previous) {
+        return 24000;
+    }
 }

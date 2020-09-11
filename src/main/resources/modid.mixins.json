@@ -4,11 +4,11 @@
   "package": "net.fabricmc.example.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-  ],
-  "client": [
     "ExampleMixin"
   ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "refmap": "modid.refmap.json"
 }
